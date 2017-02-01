@@ -45,9 +45,7 @@ public class Drive extends Command {
     	double y = Robot.oi.getLogitech().getY();
     	double z = Robot.oi.getLogitech().getZ();
     	
-    	
-    	
-    	Robot.driveTrain.mecanumDrive(Robot.oi.getLogitech());
+    	Robot.driveTrain.mecanumDrive(Robot.oi.getLogitech(), Robot.driveTrain.getGyroAngle());
     }
 
     // Make this return true when this Command no longer needs to run execute()
