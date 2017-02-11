@@ -1,0 +1,46 @@
+plugins {
+    id "java"
+    id "eclipse"
+    id "idea"
+    id "jaci.openrio.gradle.GradleRIO" version "2017.1.1"
+}
+
+frc {
+    team = "2667"
+    robotClass = "org.usfirst.frc2667.Steamworks.Robot"
+}
+
+wpi {
+    wpilibVersion = "2017.2.1"   // The WPILib version to use. For this version of GradleRIO, must be a 2017 version
+    ntcoreVersion = "3.1.6"   // The NetworkTables Core version to use.
+    opencvVersion = "3.1.0"   // The OpenCV version to use
+    cscoreVersion = "1.0.1"   // The CSCore version to use
+
+    talonSrxVersion = "4.4.1.9" // The CTRE Toolsuite (Talon SRX) version to use.
+}
+
+repositories {
+    jcenter();
+}
+
+dependencies {
+    compile wpilib()
+    compile talonSrx()
+
+    testCompile 'junit:junit:4.12'
+}
+
+
+def robotManifest = {
+  attributes 'Main-Class': 'edu.wpi.first.wpilibj.RobotBase'
+  attributes 'Robot-Class': frc.robotClass
+}
+
+jar {
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    manifest robotManifest
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.3'
+}

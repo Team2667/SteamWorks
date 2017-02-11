@@ -12,6 +12,7 @@
 package org.usfirst.frc2667.Steamworks.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2667.Steamworks.Robot;
+import org.usfirst.frc2667.Steamworks.RobotMap;
 
 /**
  *
@@ -44,8 +45,9 @@ public class Drive extends Command {
     	double x = Robot.oi.getLogitech().getX();
     	double y = Robot.oi.getLogitech().getY();
     	double z = Robot.oi.getLogitech().getZ();
-    	
-    	Robot.driveTrain.mecanumDrive(Robot.oi.getLogitech(), Robot.driveTrain.getGyroAngle());
+    	double angle = 0;
+
+    	Robot.driveTrain.mecanumDrive(Robot.oi.getLogitech(), angle);
     }
 
     // Make this return true when this Command no longer needs to run execute()
