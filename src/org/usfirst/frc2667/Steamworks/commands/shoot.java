@@ -38,7 +38,8 @@ public class shoot extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooter.shooterspeed(1.0);
+    	Robot.shooter.setRPM(-4200);
+    	//Robot.shooter.setSpeed(1.0);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -52,7 +53,7 @@ public class shoot extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.shooter.shooterspeed(0.0);
+    	Robot.shooter.setSpeed(0.0);
     }
 
     // Called when another command which requires one or more of the same
