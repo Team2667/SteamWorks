@@ -37,7 +37,7 @@ public class LiftUp extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.climber.setSpeed(0.75);
+    	Robot.climber.setSpeed(.75);
     	System.out.println("lift up");
     }
 
