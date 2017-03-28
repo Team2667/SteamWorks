@@ -15,11 +15,8 @@ package org.usfirst.frc2667.Steamworks;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-<<<<<<< HEAD
-=======
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Relay;
->>>>>>> f2bf2ff722129e6a39edd6a548e3ae286cf1a9fa
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
