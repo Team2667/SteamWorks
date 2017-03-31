@@ -45,9 +45,9 @@ public class PixyDegrees {
 			if (pixFromCenter < tolerance) {
 				return 0;
 			} else if (pixFromCenter > 0) {
-				return 1;
-			} else {
 				return -1;
+			} else {
+				return 1;
 			}
 		}
 

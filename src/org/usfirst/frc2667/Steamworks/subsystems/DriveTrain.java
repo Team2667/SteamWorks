@@ -13,6 +13,7 @@ package org.usfirst.frc2667.Steamworks.subsystems;
 
 import org.usfirst.frc2667.Steamworks.RobotMap;
 import org.usfirst.frc2667.Steamworks.commands.Drive;
+import org.usfirst.frc2667.Steamworks.util.DistanceSensor;
 import org.usfirst.frc2667.Steamworks.util.DriveTrainVector;
 import org.usfirst.frc2667.Steamworks.util.GameFieldVectors;
 import com.ctre.CANTalon;
@@ -43,6 +44,8 @@ public class DriveTrain extends Subsystem {
 
     public final ADXRS450_Gyro gyro = RobotMap.gyro;
     private GameFieldVectors vector = null;
+    public DistanceSensor gearDistance = new DistanceSensor(0, 4.887);
+    public DistanceSensor otherDistance = new DistanceSensor(1, 4.887);
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -133,6 +136,14 @@ public class DriveTrain extends Subsystem {
 	public void goRightGyro(double speed){
 		DriveTrainVector v = vector.getRightVector(speed);
 		mecanumDrive(v.getX(), v.getY(), 0, gyro.getAngle());
+	}
+	
+	public void turnClockwise(double speed) {
+		mecanumDrive(0, 0, speed, gyro.getAngle());
+	}
+	
+	public void turnCounterClockwise(double speed) {
+		mecanumDrive(0, 0, speed, gyro.getAngle());
 	}
 }
 
