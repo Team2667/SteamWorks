@@ -13,25 +13,26 @@ public class GameFieldVectors{
         public enum StartingPosition {FacingAway, FacingTowards, FacingLeft, FacingRight};
     	private DriveTrainVector forwardVector;
         private DriveTrainVector rightVector;
+        private StartingPosition startingPosition = null;
 
         public GameFieldVectors(int rearDS, int gearSideDS){
-        	StartingPosition sp = getStartingPosition(rearDS, gearSideDS);
-             if (sp == StartingPosition.FacingAway){
+        	setStartingPosition(rearDS, gearSideDS);
+             if (startingPosition == StartingPosition.FacingAway){
                   forwardVector = new DriveTrainVector (0,1);
                   rightVector = new DriveTrainVector (-1,0);
-             } else if (sp == StartingPosition.FacingTowards){
+             } else if (startingPosition == StartingPosition.FacingTowards){
                   forwardVector = new DriveTrainVector (0,-1);
                   rightVector = new DriveTrainVector (1,0);
-             } else if (sp == StartingPosition.FacingLeft){
+             } else if (startingPosition == StartingPosition.FacingLeft){
                   forwardVector = new DriveTrainVector (1,0);
                   rightVector = new DriveTrainVector (-1,0);
-             }else if (sp == StartingPosition.FacingRight){
+             }else if (startingPosition == StartingPosition.FacingRight){
                   forwardVector = new DriveTrainVector (-1,0);
                   rightVector = new DriveTrainVector (0,1);
              }
         }
 
-	public DriveTrainVector getForwardVector(double speed)
+	    public DriveTrainVector getForwardVector(double speed)
         {
              return forwardVector.mult(speed);
         }
@@ -50,8 +51,12 @@ public class GameFieldVectors{
         {            
             return rightVector.mult(speed);
         }
+        
+        private void setStartingPosition(int rearDS, int gearSideDS){
+        	startingPosition = StartingPosition.FacingAway;
+        }
 
-        private StartingPosition getStartingPosition(int rearDS, int gearSideDS){
-            return StartingPosition.FacingAway;
+        public StartingPosition getStartingPosition(){
+            return startingPosition;
         }
 }

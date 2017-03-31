@@ -38,6 +38,7 @@ public class AlignToPeg extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.lEDRing.turnOnLight();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -57,6 +58,7 @@ public class AlignToPeg extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.driveTrain.stopMotor();
+    	Robot.lEDRing.turnOffLight();
     }
 
     // Called when another command which requires one or more of the same
