@@ -15,6 +15,7 @@ import org.usfirst.frc2667.Steamworks.Robot;
 import org.usfirst.frc2667.Steamworks.subsystems.LEDRing;
 import org.usfirst.frc2667.Steamworks.util.GameFieldVectors;
 import org.usfirst.frc2667.Steamworks.vision.PixyDegrees;
+import org.usfirst.frc2667.Steamworks.vision.PixyDegrees.PixyOutput;
 
 /**
  *
@@ -40,6 +41,7 @@ public class DriveStraight extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	PixyOutput a = PixyDegrees.getPixyOutput();
     	timestart = System.currentTimeMillis();
     		Robot.driveTrain.setVector(new GameFieldVectors(0,0));
     		Robot.lEDRing.turnOnLight();
@@ -47,14 +49,16 @@ public class DriveStraight extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.goForwardGyro(30);
+     	Robot.driveTrain.goForwardGyro(.30);
+    	
     	System.out.println(Robot.driveTrain.gyro);
+    	System.out.println(PixyDegrees.getPixyOutput().isTargetInView());
     }
 
     // Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		long currenttime = System.currentTimeMillis();
-		if ((currenttime - timestart) / 1000 > 1) {
+		if ((currenttime - timestart) / 1000 > 3) {
 			System.out.println("ran out of time");
 			return true;
 		} else if (PixyDegrees.getPixyOutput().isTargetInView()) {

@@ -47,11 +47,11 @@ public class LEDRing extends Subsystem {
     }
     
     public void turnOnLight() {
-    	spike1.set(Relay.Value.kOn);
+    	spike1.set(Relay.Value.kOff);//compensating for weird wiring
     }
     
     public void turnOffLight() {
-    	spike1.set(Relay.Value.kOff);
+    	spike1.set(Relay.Value.kOn);// compensating for weird wiring
     }
     
 }

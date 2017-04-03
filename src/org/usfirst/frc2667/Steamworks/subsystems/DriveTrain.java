@@ -11,6 +11,7 @@
 
 package org.usfirst.frc2667.Steamworks.subsystems;
 
+import org.usfirst.frc2667.Steamworks.Robot;
 import org.usfirst.frc2667.Steamworks.RobotMap;
 import org.usfirst.frc2667.Steamworks.commands.Drive;
 import org.usfirst.frc2667.Steamworks.util.DistanceSensor;
@@ -110,7 +111,12 @@ public class DriveTrain extends Subsystem {
 	public void ensureGyroCalibrated(){
 		if (!gyroCalibrated){
 			gyro.calibrate();
+			gyroCalibrated = true;
 		}
+	}
+	
+	public void calibrateGyro() {
+		Robot.driveTrain.gyro.calibrate();
 	}
 	
 	public void setVector(GameFieldVectors gfv){

@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.I2C.Port;
 public class PixyDegrees {
 	private static int offset;
 	private static int tolerance;
-	private static I2C Wire = new I2C(Port.kOnboard, 4);
+	private static I2C Wire;
 	private static int MIDDLE_POS = 160;
 
 	public static class PixyOutput {
@@ -37,6 +37,9 @@ public class PixyDegrees {
 		public boolean isTargetInView() {
 			System.out.println(x1);
 			System.out.println(x2);
+			if (this.x1 == 0 && this.x2 == 0){
+			    return false;
+			}
 			return !(this.x1 == -1 || this.x2 == -1);
 		}
 
@@ -56,12 +59,18 @@ public class PixyDegrees {
 			return targetPos;
 		}
 	}
+	
+	public static void initI2c(){
+		Wire = new I2C(Port.kOnboard, 4);
+	}
 
 	public static PixyOutput getPixyOutput() {
 		int numbytes = 16;
 
 		byte[] ReturnData = new byte[numbytes];
-		Wire.readOnly(ReturnData, numbytes);
+		if (Wire.readOnly(ReturnData, numbytes)){
+		     System.out.println("Aborted");
+		}
 		PixyOutput pxOutput = new PixyOutput();
 		pxOutput.setX1(getNthIntFromByteArray(1, ReturnData));
 		pxOutput.setX2(getNthIntFromByteArray(2, ReturnData));
